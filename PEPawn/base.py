@@ -1,3 +1,4 @@
+
 import pygame #importa a biblioteca pygame
 
 from pygame.locals import *
@@ -53,8 +54,18 @@ mx = 0
 my = 0
 
 #Estado da peça
-State = 0
+Stateb1 = 0; Stateb11 = 0; Statew1 = 0; Statew11 = 0
+Stateb2 = 0; Stateb12 = 0; Statew2 = 0; Statew12 = 0
+Stateb3 = 0; Stateb13 = 0; Statew3 = 0; Statew13 = 0
+Stateb4 = 0; Stateb14 = 0; Statew4 = 0; Statew14 = 0
+Stateb5 = 0; Stateb15 = 0; Statew5 = 0; Statew15 = 0
+Stateb6 = 0; Stateb16 = 0; Statew6 = 0; Statew16 = 0
+Stateb7 = 0; Stateb17 = 0; Statew7 = 0; Statew17 = 0
+Stateb8 = 0; Stateb18 = 0; Statew8 = 0; Statew18 = 0
 
+def locomocao():
+
+    return
 ##################################Main Game function#########################################
 while True:
 
@@ -62,10 +73,8 @@ while True:
             if event.type == QUIT: #sair do jogo
                 pygame.quit()
                 exit()
-
-            if event.type == MOUSEBUTTONDOWN:#pegar a posição do mouse quando click
-                 if event.button == 1:
-                      mx, my = pygame.mouse.get_pos()
+    
+    mx, my = pygame.mouse.get_pos()
 
 #################################construção do mapa##################################################
     tela.fill((0,85,0)) #cria um plano de fundo base verde
@@ -144,19 +153,35 @@ while True:
     pygame.draw.circle(tela, (220,218,214),((wx18+0.5)*(largura/8),(wy18+0.5)*(altura/8)),30)
 
 #####################################Seleção das peças ############################################
-    if round((mx/(largura/8))-0.5) == wx1 and round((my/(largura/8))-0.5) == wy1: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
+    #W1
+    if round((mx/(largura/8))-0.5) == wx1 and round((my/(largura/8))-0.5) == wy1 and event.type == MOUSEBUTTONDOWN: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
         pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
         pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)
-        State = 1                                                                                #muda o estado da peça para 1(selecionado)
-    if event.type == MOUSEBUTTONDOWN and State == 1:                                             #se click do mouse e State == 1
-        State = 0                                                                                #muda State para 0
-        if event.button == 1:   #mudar a posição da peça
-            mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
-            wx1 = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
-            wy1 = round((my/(largura/8))-0.5)
-            #pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32)
-            #pygame.draw.circle(tela, (220,218,214),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)
-
+        Statew1 = 1                                                                                #muda o estado da peça para 1(selecionado)
+    if Statew1 == 1:
+        pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+        pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)
+    if event.type == MOUSEBUTTONUP and Statew1 == 1:  
+        pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+        pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)                                           #se click do mouse e State == 1
+        Statew1 = 0                                                                                #muda State para 0
+        mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
+        wx1 = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
+        wy1 = round((my/(altura/8))-0.5)
+    #w2        
+    if round((mx/(largura/8))-0.5) == wx2 and round((my/(largura/8))-0.5) == wy2 and event.type == MOUSEBUTTONDOWN: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
+        pygame.draw.circle(tela, (125,148,93),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+        pygame.draw.circle(tela, (199, 198, 149),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),30)
+        Statew2 = 1                                                                                #muda o estado da peça para 1(selecionado)
+    if Statew2 == 1:
+        pygame.draw.circle(tela, (125,148,93),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+        pygame.draw.circle(tela, (199, 198, 149),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),30)
+    if event.type == MOUSEBUTTONUP and Statew2 == 1:  
+        pygame.draw.circle(tela, (125,148,93),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+        pygame.draw.circle(tela, (199, 198, 149),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),30)                                           #se click do mouse e State == 1
+        Statew2 = 0                                                                                #muda State para 0
+        mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
+        wx2 = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
+        wy2 = round((my/(altura/8))-0.5)
     #selection color(199, 198, 149)
     pygame.display.update() # faz o loop/atualização do game
-    #test
