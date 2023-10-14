@@ -3,9 +3,9 @@ import pygame #importa a biblioteca pygame
 
 from pygame.locals import *
 from sys import exit
+#from Locomocao import locomocao
 
 pygame.init()
-
 #largura e altura da tela
 largura = 640
 altura = 640
@@ -63,9 +63,26 @@ Stateb6 = 0; Stateb16 = 0; Statew6 = 0; Statew16 = 0
 Stateb7 = 0; Stateb17 = 0; Statew7 = 0; Statew17 = 0
 Stateb8 = 0; Stateb18 = 0; Statew8 = 0; Statew18 = 0
 
-def locomocao():
-
-    return
+def locomocao(px,py,state,mx,my,largura,altura,event,tela):
+    
+    if round((mx/(largura/8))-0.5) == px and round((my/(largura/8))-0.5) == py and event.type == MOUSEBUTTONDOWN: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
+        pygame.draw.circle(tela, (125,148,93),((px+0.5)*(largura/8),(py+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+        pygame.draw.circle(tela, (199, 198, 149),((px+0.5)*(largura/8),(py+0.5)*(altura/8)),30)
+        state = 1
+        print("1")                                                                              #muda o estado da peça para 1(selecionado)
+    if state == 1:
+        print("2")
+        pygame.draw.circle(tela, (125,148,93),((px+0.5)*(largura/8),(py+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+        pygame.draw.circle(tela, (199, 198, 149),((px+0.5)*(largura/8),(py+0.5)*(altura/8)),30)
+    if event.type == MOUSEBUTTONUP and state == 1: 
+        print("3") 
+        pygame.draw.circle(tela, (125,148,93),((px+0.5)*(largura/8),(py+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+        pygame.draw.circle(tela, (199, 198, 149),((px+0.5)*(largura/8),(py+0.5)*(altura/8)),30)                                           #se click do mouse e State == 1
+        state = 0                                                                                #muda State para 0
+        mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
+        px = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
+        py = round((my/(altura/8))-0.5)
+    return (px,py,state)
 ##################################Main Game function#########################################
 while True:
 
@@ -153,35 +170,57 @@ while True:
     pygame.draw.circle(tela, (220,218,214),((wx18+0.5)*(largura/8),(wy18+0.5)*(altura/8)),30)
 
 #####################################Seleção das peças ############################################
-    #W1
-    if round((mx/(largura/8))-0.5) == wx1 and round((my/(largura/8))-0.5) == wy1 and event.type == MOUSEBUTTONDOWN: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
-        pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
-        pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)
-        Statew1 = 1                                                                                #muda o estado da peça para 1(selecionado)
-    if Statew1 == 1:
-        pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
-        pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)
-    if event.type == MOUSEBUTTONUP and Statew1 == 1:  
-        pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
-        pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)                                           #se click do mouse e State == 1
-        Statew1 = 0                                                                                #muda State para 0
-        mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
-        wx1 = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
-        wy1 = round((my/(altura/8))-0.5)
-    #w2        
-    if round((mx/(largura/8))-0.5) == wx2 and round((my/(largura/8))-0.5) == wy2 and event.type == MOUSEBUTTONDOWN: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
-        pygame.draw.circle(tela, (125,148,93),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
-        pygame.draw.circle(tela, (199, 198, 149),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),30)
-        Statew2 = 1                                                                                #muda o estado da peça para 1(selecionado)
-    if Statew2 == 1:
-        pygame.draw.circle(tela, (125,148,93),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
-        pygame.draw.circle(tela, (199, 198, 149),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),30)
-    if event.type == MOUSEBUTTONUP and Statew2 == 1:  
-        pygame.draw.circle(tela, (125,148,93),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
-        pygame.draw.circle(tela, (199, 198, 149),((wx2+0.5)*(largura/8),(wy2+0.5)*(altura/8)),30)                                           #se click do mouse e State == 1
-        Statew2 = 0                                                                                #muda State para 0
-        mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
-        wx2 = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
-        wy2 = round((my/(altura/8))-0.5)
+    #Backup se tudo explodir
+    # #W1
+    # if round((mx/(largura/8))-0.5) == wx1 and round((my/(largura/8))-0.5) == wy1 and event.type == MOUSEBUTTONDOWN: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
+    #     pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+    #     pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)
+    #     Statew1 = 1                                                                                #muda o estado da peça para 1(selecionado)
+    # if Statew1 == 1:
+    #     pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+    #     pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)
+    # if event.type == MOUSEBUTTONUP and Statew1 == 1:  
+    #     pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
+    #     pygame.draw.circle(tela, (199, 198, 149),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),30)                                           #se click do mouse e State == 1
+    #     Statew1 = 0                                                                                #muda State para 0
+    #     mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
+    #     wx1 = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
+    #     wy1 = round((my/(altura/8))-0.5)
+    
+    wx1, wy1, Statew1 = locomocao(wx1,wy1,Statew1,mx,my,largura,altura,event,tela)
+    wx2, wy2, Statew2 = locomocao(wx2,wy2,Statew2,mx,my,largura,altura,event,tela)
+    wx3, wy3, Statew3 = locomocao(wx3,wy3,Statew3,mx,my,largura,altura,event,tela)
+    wx4, wy4, Statew4 = locomocao(wx4,wy4,Statew4,mx,my,largura,altura,event,tela)
+    wx5, wy5, Statew5 = locomocao(wx5,wy5,Statew5,mx,my,largura,altura,event,tela)
+    wx6, wy6, Statew6 = locomocao(wx6,wy6,Statew6,mx,my,largura,altura,event,tela)
+    wx7, wy7, Statew7 = locomocao(wx7,wy7,Statew7,mx,my,largura,altura,event,tela)
+    wx8, wy8, Statew8 = locomocao(wx8,wy8,Statew8,mx,my,largura,altura,event,tela)
+    wx11, wy11, Statew11 = locomocao(wx11, wy11, Statew11, mx, my, largura, altura, event, tela)
+    wx12, wy12, Statew12 = locomocao(wx12, wy12, Statew12, mx, my, largura, altura, event, tela)
+    wx13, wy13, Statew13 = locomocao(wx13, wy13, Statew13, mx, my, largura, altura, event, tela)
+    wx14, wy14, Statew14 = locomocao(wx14, wy14, Statew14, mx, my, largura, altura, event, tela)
+    wx15, wy15, Statew15 = locomocao(wx15, wy15, Statew15, mx, my, largura, altura, event, tela)
+    wx16, wy16, Statew16 = locomocao(wx16, wy16, Statew16, mx, my, largura, altura, event, tela)
+    wx17, wy17, Statew17 = locomocao(wx17, wy17, Statew17, mx, my, largura, altura, event, tela)
+    wx18, wy18, Statew18 = locomocao(wx18, wy18, Statew18, mx, my, largura, altura, event, tela)
+
+    bx1, by1, Stateb1 = locomocao(bx1, by1, Stateb1, mx, my, largura, altura, event, tela)
+    bx2, by2, Stateb2 = locomocao(bx2, by2, Stateb2, mx, my, largura, altura, event, tela)
+    bx3, by3, Stateb3 = locomocao(bx3, by3, Stateb3, mx, my, largura, altura, event, tela)
+    bx4, by4, Stateb4 = locomocao(bx4, by4, Stateb4, mx, my, largura, altura, event, tela)
+    bx5, by5, Stateb5 = locomocao(bx5, by5, Stateb5, mx, my, largura, altura, event, tela)
+    bx6, by6, Stateb6 = locomocao(bx6, by6, Stateb6, mx, my, largura, altura, event, tela)
+    bx7, by7, Stateb7 = locomocao(bx7, by7, Stateb7, mx, my, largura, altura, event, tela)
+    bx8, by8, Stateb8 = locomocao(bx8, by8, Stateb8, mx, my, largura, altura, event, tela)
+    bx11, by11, Stateb11 = locomocao(bx11, by11, Stateb11, mx, my, largura, altura, event, tela)
+    bx12, by12, Stateb12 = locomocao(bx12, by12, Stateb12, mx, my, largura, altura, event, tela)
+    bx13, by13, Stateb13 = locomocao(bx13, by13, Stateb13, mx, my, largura, altura, event, tela)
+    bx14, by14, Stateb14 = locomocao(bx14, by14, Stateb14, mx, my, largura, altura, event, tela)
+    bx15, by15, Stateb15 = locomocao(bx15, by15, Stateb15, mx, my, largura, altura, event, tela)
+    bx16, by16, Stateb16 = locomocao(bx16, by16, Stateb16, mx, my, largura, altura, event, tela)
+    bx17, by17, Stateb17 = locomocao(bx17, by17, Stateb17, mx, my, largura, altura, event, tela)
+    bx18, by18, Stateb18 = locomocao(bx18, by18, Stateb18, mx, my, largura, altura, event, tela)
+    #print(wx2,wy2)
+
     #selection color(199, 198, 149)
     pygame.display.update() # faz o loop/atualização do game
