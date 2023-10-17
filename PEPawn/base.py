@@ -1,13 +1,12 @@
 import pygame #importa a biblioteca pygame
-import os
-import random
+import random as rnd #importa a biblioteca random
 
 from pygame.locals import *
 from sys import exit
 from LocomocaoW import locomocaoW
 from LocomocaoB import locomocaoB
 
-import random as rnd
+
 
 
 pygame.init()
@@ -72,10 +71,14 @@ Stateb8 = 0; Stateb18 = 0; Statew8 = 0; Statew18 = 0
 #seta o turno da peça
 turno = 0
 
-#seta o estado de aleatorização
+#Define quando vai ocorrer o sorteio
 aleat = 0
-
+#contador de turnos para a 
+cont = 1
+#variaveis que vão receber o valor srteado para definir a movimentação
 numero = None
+poder = None
+
 ##################################Main Game function#########################################
 while True:
 
@@ -180,58 +183,63 @@ while True:
     #     wx1 = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
     #     wy1 = round((my/(altura/8))-0.5)
 
-    if turno%2 == 0:
-        if aleat == 0:
+    if turno%2 == 0:                                        #Se o turno for par: as peças brancas jogam
+        if aleat == 0:                                      #se a variavel aleat = 0
+            if cont%3 == 0:                                    #ver se o o contador das rodadas é multiplo de 3
+                poder = rnd.randint(0,5)                        #se sim, sorteia um poder
+                aleat = 1
+            else:                                               #caso contrario, sorteia um movimento normal
+                numero = rnd.randint(0,5)
+                aleat = 1
+                print(numero)
+    ################################Funções de locomoção das peças brancas#######################################################################################
+        wx1, wy1, Statew1, turno = locomocaoW(wx1,wy1,Statew1,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
+        wx2, wy2, Statew2, turno = locomocaoW(wx2,wy2,Statew2,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
+        wx3, wy3, Statew3, turno = locomocaoW(wx3,wy3,Statew3,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
+        wx4, wy4, Statew4, turno = locomocaoW(wx4,wy4,Statew4,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
+        wx5, wy5, Statew5, turno = locomocaoW(wx5,wy5,Statew5,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
+        wx6, wy6, Statew6, turno = locomocaoW(wx6,wy6,Statew6,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
+        wx7, wy7, Statew7, turno = locomocaoW(wx7,wy7,Statew7,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
+        wx8, wy8, Statew8, turno = locomocaoW(wx8,wy8,Statew8,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
+        wx11, wy11, Statew11, turno = locomocaoW(wx11, wy11, Statew11, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        wx12, wy12, Statew12, turno = locomocaoW(wx12, wy12, Statew12, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        wx13, wy13, Statew13, turno = locomocaoW(wx13, wy13, Statew13, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        wx14, wy14, Statew14, turno = locomocaoW(wx14, wy14, Statew14, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        wx15, wy15, Statew15, turno = locomocaoW(wx15, wy15, Statew15, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        wx16, wy16, Statew16, turno = locomocaoW(wx16, wy16, Statew16, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        wx17, wy17, Statew17, turno = locomocaoW(wx17, wy17, Statew17, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        wx18, wy18, Statew18, turno = locomocaoW(wx18, wy18, Statew18, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
 
-            numero= rnd.randint(0,5)
-            aleat = 1
-
-        
-        wx1, wy1, Statew1, turno = locomocaoW(wx1,wy1,Statew1,mx,my,largura,altura,event,tela, turno,numero)
-        wx2, wy2, Statew2, turno = locomocaoW(wx2,wy2,Statew2,mx,my,largura,altura,event,tela, turno,numero)
-        wx3, wy3, Statew3, turno = locomocaoW(wx3,wy3,Statew3,mx,my,largura,altura,event,tela, turno,numero)
-        wx4, wy4, Statew4, turno = locomocaoW(wx4,wy4,Statew4,mx,my,largura,altura,event,tela, turno,numero)
-        wx5, wy5, Statew5, turno = locomocaoW(wx5,wy5,Statew5,mx,my,largura,altura,event,tela, turno,numero)
-        wx6, wy6, Statew6, turno = locomocaoW(wx6,wy6,Statew6,mx,my,largura,altura,event,tela, turno,numero)
-        wx7, wy7, Statew7, turno = locomocaoW(wx7,wy7,Statew7,mx,my,largura,altura,event,tela, turno,numero)
-        wx8, wy8, Statew8, turno = locomocaoW(wx8,wy8,Statew8,mx,my,largura,altura,event,tela, turno,numero)
-        wx11, wy11, Statew11, turno = locomocaoW(wx11, wy11, Statew11, mx, my, largura, altura, event, tela, turno,numero)
-        wx12, wy12, Statew12, turno = locomocaoW(wx12, wy12, Statew12, mx, my, largura, altura, event, tela, turno,numero)
-        wx13, wy13, Statew13, turno = locomocaoW(wx13, wy13, Statew13, mx, my, largura, altura, event, tela, turno,numero)
-        wx14, wy14, Statew14, turno = locomocaoW(wx14, wy14, Statew14, mx, my, largura, altura, event, tela, turno,numero)
-        wx15, wy15, Statew15, turno = locomocaoW(wx15, wy15, Statew15, mx, my, largura, altura, event, tela, turno,numero)
-        wx16, wy16, Statew16, turno = locomocaoW(wx16, wy16, Statew16, mx, my, largura, altura, event, tela, turno,numero)
-        wx17, wy17, Statew17, turno = locomocaoW(wx17, wy17, Statew17, mx, my, largura, altura, event, tela, turno,numero)
-        wx18, wy18, Statew18, turno = locomocaoW(wx18, wy18, Statew18, mx, my, largura, altura, event, tela, turno,numero)
-        print(numero)
 
 
+    if turno%2 == 1:                                #Se o turno for impar: as peças pretas jogam
+        if aleat == 1:                                  #se leat for 1
+            if cont%3 == 0:                             #se cont for multiplo de 3, sorteia um poder
+                poder = rnd.randint(0,5)
+                aleat = 0
+            else:                                       #caso contrario, sorteia um movimento normal
+                numero = rnd.randint(0,5)
+                aleat = 0
+                print(numero)
+    
+    ################################Funções de locomoção das peças pretas#######################################################################################
 
-    if turno%2 == 1:
-
-        if aleat == 1:
-
-            numero= rnd.randint(0,5)
-            aleat = 0
-
-        
-        bx1, by1, Stateb1, turno = locomocaoB(bx1, by1, Stateb1, mx, my, largura, altura, event, tela, turno,numero)
-        bx2, by2, Stateb2, turno = locomocaoB(bx2, by2, Stateb2, mx, my, largura, altura, event, tela, turno,numero)
-        bx3, by3, Stateb3, turno = locomocaoB(bx3, by3, Stateb3, mx, my, largura, altura, event, tela, turno,numero)
-        bx4, by4, Stateb4, turno = locomocaoB(bx4, by4, Stateb4, mx, my, largura, altura, event, tela, turno,numero)
-        bx5, by5, Stateb5, turno = locomocaoB(bx5, by5, Stateb5, mx, my, largura, altura, event, tela, turno,numero)
-        bx6, by6, Stateb6, turno = locomocaoB(bx6, by6, Stateb6, mx, my, largura, altura, event, tela, turno,numero)
-        bx7, by7, Stateb7, turno = locomocaoB(bx7, by7, Stateb7, mx, my, largura, altura, event, tela, turno,numero)
-        bx8, by8, Stateb8, turno = locomocaoB(bx8, by8, Stateb8, mx, my, largura, altura, event, tela, turno,numero)
-        bx11, by11, Stateb11, turno = locomocaoB(bx11, by11, Stateb11, mx, my, largura, altura, event, tela, turno,numero)
-        bx12, by12, Stateb12, turno = locomocaoB(bx12, by12, Stateb12, mx, my, largura, altura, event, tela, turno,numero)
-        bx13, by13, Stateb13, turno= locomocaoB(bx13, by13, Stateb13, mx, my, largura, altura, event, tela, turno,numero)
-        bx14, by14, Stateb14, turno = locomocaoB(bx14, by14, Stateb14, mx, my, largura, altura, event, tela, turno,numero)
-        bx15, by15, Stateb15, turno = locomocaoB(bx15, by15, Stateb15, mx, my, largura, altura, event, tela, turno,numero)
-        bx16, by16, Stateb16, turno = locomocaoB(bx16, by16, Stateb16, mx, my, largura, altura, event, tela, turno,numero)
-        bx17, by17, Stateb17, turno = locomocaoB(bx17, by17, Stateb17, mx, my, largura, altura, event, tela, turno,numero)
-        bx18, by18, Stateb18, turno = locomocaoB(bx18, by18, Stateb18, mx, my, largura, altura, event, tela, turno,numero)
-    print(numero)
+        bx1, by1, Stateb1, turno, cont = locomocaoB(bx1, by1, Stateb1, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx2, by2, Stateb2, turno, cont = locomocaoB(bx2, by2, Stateb2, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx3, by3, Stateb3, turno, cont = locomocaoB(bx3, by3, Stateb3, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx4, by4, Stateb4, turno, cont = locomocaoB(bx4, by4, Stateb4, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx5, by5, Stateb5, turno, cont = locomocaoB(bx5, by5, Stateb5, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx6, by6, Stateb6, turno, cont = locomocaoB(bx6, by6, Stateb6, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx7, by7, Stateb7, turno, cont = locomocaoB(bx7, by7, Stateb7, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx8, by8, Stateb8, turno, cont = locomocaoB(bx8, by8, Stateb8, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx11, by11, Stateb11, turno, cont = locomocaoB(bx11, by11, Stateb11, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx12, by12, Stateb12, turno, cont = locomocaoB(bx12, by12, Stateb12, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx13, by13, Stateb13, turno, cont= locomocaoB(bx13, by13, Stateb13, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx14, by14, Stateb14, turno, cont= locomocaoB(bx14, by14, Stateb14, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx15, by15, Stateb15, turno, cont = locomocaoB(bx15, by15, Stateb15, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx16, by16, Stateb16, turno, cont = locomocaoB(bx16, by16, Stateb16, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx17, by17, Stateb17, turno, cont= locomocaoB(bx17, by17, Stateb17, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx18, by18, Stateb18, turno, cont = locomocaoB(bx18, by18, Stateb18, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
 
 
     #selection color(199, 198, 149)
