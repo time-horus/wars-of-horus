@@ -1,17 +1,11 @@
 import pygame
-import random
-
-import random as rnd
-
 from pygame.locals import *
-
-
 
 
 def SorteiaW(mx,largura,my,px,py,numero):
     match numero:
         case 0:
-            loc = (round((mx/(largura/8))-0.5) == px-1 or round((mx/(largura/8))-0.5) == px-1) and round((my/(largura/8))-0.5) == py-2
+            loc = round((mx/(largura/8))-0.5) == px and round((my/(largura/8))-0.5) == py
             #print("1")
         case 1:
             loc = round((mx/(largura/8))-0.5) == px and round((my/(largura/8))-0.5) == py-1
@@ -30,9 +24,7 @@ def SorteiaW(mx,largura,my,px,py,numero):
         
     return(loc)
 
-
 def SorteiaB(mx,largura,my,px,py,numero):
-    
     match numero:
         case 0:
             loc = round((mx/(largura/8))-0.5) == px and round((my/(largura/8))-0.5) == py
