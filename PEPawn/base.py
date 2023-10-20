@@ -1,12 +1,11 @@
 import pygame #importa a biblioteca pygame
 import random as rnd #importa a biblioteca random
-import ComePecas
+import numpy as np
 
 from pygame.locals import *
 from sys import exit
 from LocomocaoW import locomocaoW
 from LocomocaoB import locomocaoB
-from ComePecas import Come
 
 pygame.init()
 #largura e altura da tela
@@ -80,10 +79,8 @@ poder = None
 
 #Vetores para a seleção das peças
 
-Cordenadas_X_W = []
-Cordenadas_Y_W = []
-Cordenadas_X_B = []
-Cordenadas_Y_B = []
+Cordenadas_W = np.array([])
+Cordenadas_B = np.array([])
 
 ##################################Main Game function#########################################
 while True:
@@ -121,8 +118,7 @@ while True:
     pygame.draw.circle(tela, (0,0,0),((bx17+0.5)*(largura/8),(by17+0.5)*(altura/8)),30)
     pygame.draw.circle(tela, (0,0,0),((bx18+0.5)*(largura/8),(by18+0.5)*(altura/8)),30)
 
-    Cordenadas_X_B = [bx1, bx2, bx3, bx4, bx5, bx6, bx7, bx8, bx11, bx12, bx13, bx14, bx15, bx16, bx17, bx18]
-    Cordenadas_Y_B = [by1, by2, by3, by4, by5, by6, by7, by8, by11, by12, by13, by14, by15, by16, by17, by18]
+    Cordenadas_B = np.array([[bx1,by1],[bx2,by2],[bx3,by3],[bx4,by4],[bx5,by5],[bx6,by6],[bx7,by7],[bx8,by8],[bx11,by11],[bx12,by12],[bx13,by13],[bx14,by14],[bx15,by15],[bx16,by16],[bx17,by17],[bx18,by18]])
 
 ##################################Set das Peças Brancas separadamente###############################################################
     
@@ -175,8 +171,8 @@ while True:
     pygame.draw.circle(tela, (220,218,214),((wx18+0.5)*(largura/8),(wy18+0.5)*(altura/8)),30)
 
 
-    Cordenadas_X_W = [wx1,wx2,wx3,wx4,wx5,wx6,wx7,wx8,wx11,wx12,wx13,wx14,wx15,wx16,wx17,wx18]
-    Cordenadas_Y_W = [wy1,wy2,wy3,wy4,wy5,wy6,wy7,wy8,wy11,wy12,wy13,wy14,wy15,wy16,wy17,wy18]
+    Cordenadas_W = np.array([[wx1, wy1], [wx2, wy2], [wx3, wy3], [wx4, wy4], [wx5, wy5], [wx6, wy6], [wx7, wy7], [wx8, wy8], [wx11, wy11], [wx12, wy12], [wx13, wy13], [wx14, wy14], [wx15, wy15], [wx16, wy16], [wx17, wy17], [wx18, wy18]])
+
 #####################################Seleção das peças ############################################
     #Backup se tudo explodir
     # #W1
@@ -205,30 +201,26 @@ while True:
                 aleat = 1
                 print(numero)
     ################################Funções de locomoção das peças brancas#######################################################################################
-        wx1, wy1, Statew1, turno = locomocaoW(wx1,wy1,Statew1,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
-        wx2, wy2, Statew2, turno = locomocaoW(wx2,wy2,Statew2,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
-        wx3, wy3, Statew3, turno = locomocaoW(wx3,wy3,Statew3,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
-        wx4, wy4, Statew4, turno = locomocaoW(wx4,wy4,Statew4,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
-        wx5, wy5, Statew5, turno = locomocaoW(wx5,wy5,Statew5,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
-        wx6, wy6, Statew6, turno = locomocaoW(wx6,wy6,Statew6,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
-        wx7, wy7, Statew7, turno = locomocaoW(wx7,wy7,Statew7,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
-        wx8, wy8, Statew8, turno = locomocaoW(wx8,wy8,Statew8,mx,my,largura,altura,event,tela, turno,numero,poder,cont)
-        wx11, wy11, Statew11, turno = locomocaoW(wx11, wy11, Statew11, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        wx12, wy12, Statew12, turno = locomocaoW(wx12, wy12, Statew12, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        wx13, wy13, Statew13, turno = locomocaoW(wx13, wy13, Statew13, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        wx14, wy14, Statew14, turno = locomocaoW(wx14, wy14, Statew14, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        wx15, wy15, Statew15, turno = locomocaoW(wx15, wy15, Statew15, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        wx16, wy16, Statew16, turno = locomocaoW(wx16, wy16, Statew16, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        wx17, wy17, Statew17, turno = locomocaoW(wx17, wy17, Statew17, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        wx18, wy18, Statew18, turno = locomocaoW(wx18, wy18, Statew18, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-
-    Cordenadas_X_W = [wx1,wx2,wx3,wx4,wx5,wx6,wx7,wx8,wx11,wx12,wx13,wx14,wx15,wx16,wx17,wx18]
-    Cordenadas_Y_W = [wy1,wy2,wy3,wy4,wy5,wy6,wy7,wy8,wy11,wy12,wy13,wy14,wy15,wy16,wy17,wy18]
-
-    Cordenadas_X_B, Cordenadas_Y_B,s,n = Come(Cordenadas_X_B,Cordenadas_Y_B,Cordenadas_X_W,Cordenadas_Y_W,turno)
-
-    bx1,bx2,bx3,bx4,bx5,bx6,bx7,bx8,bx11,bx12,bx13,bx14,bx15,bx16,bx17,bx18 = Cordenadas_X_B
-    by1, by2, by3, by4, by5, by6, by7, by8, by11, by12, by13, by14, by15, by16, by17, by18 = Cordenadas_Y_B
+        wx1, wy1, Statew1, turno,  Cordenadas_B = locomocaoW(wx1,wy1,Statew1,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
+        wx2, wy2, Statew2, turno,  Cordenadas_B = locomocaoW(wx2,wy2,Statew2,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
+        wx3, wy3, Statew3, turno,  Cordenadas_B = locomocaoW(wx3,wy3,Statew3,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
+        wx4, wy4, Statew4, turno,  Cordenadas_B = locomocaoW(wx4,wy4,Statew4,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
+        wx5, wy5, Statew5, turno,  Cordenadas_B = locomocaoW(wx5,wy5,Statew5,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
+        wx6, wy6, Statew6, turno,  Cordenadas_B = locomocaoW(wx6,wy6,Statew6,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
+        wx7, wy7, Statew7, turno,  Cordenadas_B = locomocaoW(wx7,wy7,Statew7,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
+        wx8, wy8, Statew8, turno,  Cordenadas_B = locomocaoW(wx8,wy8,Statew8,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
+        wx11, wy11, Statew11, turno, Cordenadas_B = locomocaoW(wx11, wy11, Statew11, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_B)
+        wx12, wy12, Statew12, turno,  Cordenadas_B = locomocaoW(wx12, wy12, Statew12, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_B)
+        wx13, wy13, Statew13, turno,  Cordenadas_B = locomocaoW(wx13, wy13, Statew13, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_B)
+        wx14, wy14, Statew14, turno,  Cordenadas_B = locomocaoW(wx14, wy14, Statew14, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_B)
+        wx15, wy15, Statew15, turno,  Cordenadas_B = locomocaoW(wx15, wy15, Statew15, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_B)
+        wx16, wy16, Statew16, turno,  Cordenadas_B = locomocaoW(wx16, wy16, Statew16, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_B)
+        wx17, wy17, Statew17, turno,  Cordenadas_B = locomocaoW(wx17, wy17, Statew17, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_B)
+        wx18, wy18, Statew18, turno,  Cordenadas_B = locomocaoW(wx18, wy18, Statew18, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_B)
+        
+        bx1, bx2, bx3, bx4, bx5, bx6, bx7, bx8, bx11, bx12, bx13, bx14, bx15, bx16, bx17, bx18 = Cordenadas_B[:,0]
+        by1, by2, by3, by4, by5, by6, by7, by8, by11, by12, by13, by14, by15, by16, by17, by18 = Cordenadas_B[:,1]
+    
 
 
     if turno%2 == 1:                                #Se o turno for impar: as peças pretas jogam
@@ -243,30 +235,27 @@ while True:
     
     ################################Funções de locomoção das peças pretas#######################################################################################
 
-        bx1, by1, Stateb1, turno, cont = locomocaoB(bx1, by1, Stateb1, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx2, by2, Stateb2, turno, cont = locomocaoB(bx2, by2, Stateb2, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx3, by3, Stateb3, turno, cont = locomocaoB(bx3, by3, Stateb3, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx4, by4, Stateb4, turno, cont = locomocaoB(bx4, by4, Stateb4, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx5, by5, Stateb5, turno, cont = locomocaoB(bx5, by5, Stateb5, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx6, by6, Stateb6, turno, cont = locomocaoB(bx6, by6, Stateb6, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx7, by7, Stateb7, turno, cont = locomocaoB(bx7, by7, Stateb7, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx8, by8, Stateb8, turno, cont = locomocaoB(bx8, by8, Stateb8, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx11, by11, Stateb11, turno, cont = locomocaoB(bx11, by11, Stateb11, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx12, by12, Stateb12, turno, cont = locomocaoB(bx12, by12, Stateb12, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx13, by13, Stateb13, turno, cont= locomocaoB(bx13, by13, Stateb13, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx14, by14, Stateb14, turno, cont= locomocaoB(bx14, by14, Stateb14, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx15, by15, Stateb15, turno, cont = locomocaoB(bx15, by15, Stateb15, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx16, by16, Stateb16, turno, cont = locomocaoB(bx16, by16, Stateb16, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx17, by17, Stateb17, turno, cont= locomocaoB(bx17, by17, Stateb17, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
-        bx18, by18, Stateb18, turno, cont = locomocaoB(bx18, by18, Stateb18, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
+        bx1, by1, Stateb1, turno, cont, Cordenadas_W = locomocaoB(bx1, by1, Stateb1, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx2, by2, Stateb2, turno, cont, Cordenadas_W = locomocaoB(bx2, by2, Stateb2, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx3, by3, Stateb3, turno, cont, Cordenadas_W = locomocaoB(bx3, by3, Stateb3, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx4, by4, Stateb4, turno, cont, Cordenadas_W = locomocaoB(bx4, by4, Stateb4, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx5, by5, Stateb5, turno, cont, Cordenadas_W = locomocaoB(bx5, by5, Stateb5, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx6, by6, Stateb6, turno, cont, Cordenadas_W = locomocaoB(bx6, by6, Stateb6, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx7, by7, Stateb7, turno, cont, Cordenadas_W = locomocaoB(bx7, by7, Stateb7, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx8, by8, Stateb8, turno, cont, Cordenadas_W = locomocaoB(bx8, by8, Stateb8, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx11, by11, Stateb11, turno, cont, Cordenadas_W = locomocaoB(bx11, by11, Stateb11, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx12, by12, Stateb12, turno, cont, Cordenadas_W = locomocaoB(bx12, by12, Stateb12, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx13, by13, Stateb13, turno, cont, Cordenadas_W= locomocaoB(bx13, by13, Stateb13, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx14, by14, Stateb14, turno, cont, Cordenadas_W= locomocaoB(bx14, by14, Stateb14, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx15, by15, Stateb15, turno, cont, Cordenadas_W = locomocaoB(bx15, by15, Stateb15, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx16, by16, Stateb16, turno, cont, Cordenadas_W = locomocaoB(bx16, by16, Stateb16, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx17, by17, Stateb17, turno, cont, Cordenadas_W = locomocaoB(bx17, by17, Stateb17, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx18, by18, Stateb18, turno, cont, Cordenadas_W = locomocaoB(bx18, by18, Stateb18, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
 
-        Cordenadas_X_B = [bx1, bx2, bx3, bx4, bx5, bx6, bx7, bx8, bx11, bx12, bx13, bx14, bx15, bx16, bx17, bx18]
-        Cordenadas_Y_B = [by1, by2, by3, by4, by5, by6, by7, by8, by11, by12, by13, by14, by15, by16, by17, by18]
+        wx1, wx2, wx3, wx4, wx5, wx6, wx7, wx8, wx11, wx12, wx13, wx14, wx15, wx16, wx17, wx18 = Cordenadas_W[:,0]
+        wy1, wy2, wy3, wy4, wy5, wy6, wy7, wy8, wy11, wy12, wy13, wy14, wy15, wy16, wy17, wy18 = Cordenadas_W[:,1]
+
         
-        Cordenadas_X_W, Cordenadas_Y_W = Come(Cordenadas_X_B,Cordenadas_Y_B,Cordenadas_X_W,Cordenadas_Y_W,turno,)
-
-        wx1, wx2, wx3, wx4, wx5, wx6, wx7, wx8, wx11, wx12, wx13, wx14, wx15, wx16, wx17, wx18 = Cordenadas_X_W
-        wy1, wy2, wy3, wy4, wy5, wy6, wy7, wy8, wy11, wy12, wy13, wy14, wy15, wy16, wy17, wy18 = Cordenadas_Y_W
 
     #selection color(199, 198, 149)
     pygame.display.update() # faz o loop/atualização do game
