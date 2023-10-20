@@ -1,14 +1,17 @@
 import pygame
 import Sorteio
 import Poderes
+import ComePecas
+import numpy as np
 
 from Poderes import PoderW
 from Sorteio import SorteiaW
+from ComePecas import W_Come_B
 
 from pygame.locals import *
 
 
-def locomocaoW(px,py,state,mx,my,largura,altura,event,tela,turno,numero,poder,cont):
+def locomocaoW(px,py,state,mx,my,largura,altura,event,tela,turno,numero,poder,cont,Cordenadas_B):
     
     if round((mx/(largura/8))-0.5) == px and round((my/(largura/8))-0.5) == py and event.type == MOUSEBUTTONDOWN: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
         pygame.draw.circle(tela, (125,148,93),((px+0.5)*(largura/8),(py+0.5)*(altura/8)),32) #troca a cor da peça para mostrar seleção
@@ -31,5 +34,6 @@ def locomocaoW(px,py,state,mx,my,largura,altura,event,tela,turno,numero,poder,co
         mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
         px = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
         py = round((my/(altura/8))-0.5)
+        Cordenadas_B = W_Come_B(Cordenadas_B,px,py)
         turno = turno+1
-    return (px,py,state,turno)
+    return (px,py,state,turno,Cordenadas_B)
