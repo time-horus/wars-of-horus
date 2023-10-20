@@ -1,14 +1,17 @@
 import pygame
 import Sorteio
 import Poderes
+import ComePecas
+import numpy as np
 
 from Poderes import PoderB
 from Sorteio import SorteiaB
+from ComePecas import B_Come_W
 
 from pygame.locals import *
 
 
-def locomocaoB(px,py,state,mx,my,largura,altura,event,tela,turno,numero,poder,cont):
+def locomocaoB(px,py,state,mx,my,largura,altura,event,tela,turno,numero,poder,cont,Cordenadas_W):
 
 
     if round((mx/(largura/8))-0.5) == px and round((my/(largura/8))-0.5) == py and event.type == MOUSEBUTTONDOWN: #faz a comparação da posição no click do mouse com a posição da peça, se for igual:
@@ -30,8 +33,9 @@ def locomocaoB(px,py,state,mx,my,largura,altura,event,tela,turno,numero,poder,co
         mx, my = pygame.mouse.get_pos()                                                      #pega a posição do mouse no momento do click
         px = round((mx/(largura/8))-0.5)                                                    #tratamento da posição do mouse e atribuição na posição da peça
         py = round((my/(altura/8))-0.5)
+        Cordenadas_W = B_Come_W(Cordenadas_W,px,py)
         turno = turno+1
         cont = cont+1
         print(cont)
         
-    return (px,py,state,turno,cont)
+    return (px,py,state,turno,cont,Cordenadas_W)
