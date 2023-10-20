@@ -1,13 +1,12 @@
 import pygame #importa a biblioteca pygame
 import random as rnd #importa a biblioteca random
+import ComePecas
 
 from pygame.locals import *
 from sys import exit
 from LocomocaoW import locomocaoW
 from LocomocaoB import locomocaoB
-
-
-
+from ComePecas import Come
 
 pygame.init()
 #largura e altura da tela
@@ -79,6 +78,13 @@ cont = 1
 numero = None
 poder = None
 
+#Vetores para a seleção das peças
+
+Cordenadas_X_W = []
+Cordenadas_Y_W = []
+Cordenadas_X_B = []
+Cordenadas_Y_B = []
+
 ##################################Main Game function#########################################
 while True:
 
@@ -100,7 +106,7 @@ while True:
     pygame.draw.circle(tela, (0,0,0),((bx1+0.5)*(largura/8),(by1+0.5)*(altura/8)),30) #pygame.draw.circle(tela, (cor RGB),(posição x, posição y), raio)
     pygame.draw.circle(tela, (0,0,0),((bx2+0.5)*(largura/8),(by2+0.5)*(altura/8)),30)
     pygame.draw.circle(tela, (0,0,0),((bx3+0.5)*(largura/8),(by3+0.5)*(altura/8)),30)
-    pygame.draw.circle(tela, (0,0,0),((bx4+0.5)*(largura/8),(by4+0.5)*(altura/8)),30)
+    pygame.draw.circle(tela, (0,0,0),((bx4+0.5)*(largura/8),(by4+0.5)*(altura/8)),30) #rei
     pygame.draw.circle(tela, (0,0,0),((bx5+0.5)*(largura/8),(by5+0.5)*(altura/8)),30)
     pygame.draw.circle(tela, (0,0,0),((bx6+0.5)*(largura/8),(by6+0.5)*(altura/8)),30)
     pygame.draw.circle(tela, (0,0,0),((bx7+0.5)*(largura/8),(by7+0.5)*(altura/8)),30)
@@ -115,6 +121,9 @@ while True:
     pygame.draw.circle(tela, (0,0,0),((bx17+0.5)*(largura/8),(by17+0.5)*(altura/8)),30)
     pygame.draw.circle(tela, (0,0,0),((bx18+0.5)*(largura/8),(by18+0.5)*(altura/8)),30)
 
+    Cordenadas_X_B = [bx1, bx2, bx3, bx4, bx5, bx6, bx7, bx8, bx11, bx12, bx13, bx14, bx15, bx16, bx17, bx18]
+    Cordenadas_Y_B = [by1, by2, by3, by4, by5, by6, by7, by8, by11, by12, by13, by14, by15, by16, by17, by18]
+
 ##################################Set das Peças Brancas separadamente###############################################################
     
     pygame.draw.circle(tela, (125,148,93),((wx1+0.5)*(largura/8),(wy1+0.5)*(altura/8)),32)
@@ -126,7 +135,7 @@ while True:
     pygame.draw.circle(tela, (125,148,93),((wx3+0.5)*(largura/8),(wy3+0.5)*(altura/8)),32)
     pygame.draw.circle(tela, (220,218,214),((wx3+0.5)*(largura/8),(wy3+0.5)*(altura/8)),30)
 
-    pygame.draw.circle(tela, (125,148,93),((wx4+0.5)*(largura/8),(wy4+0.5)*(altura/8)),32)
+    pygame.draw.circle(tela, (125,148,93),((wx4+0.5)*(largura/8),(wy4+0.5)*(altura/8)),32)  #Rei
     pygame.draw.circle(tela, (220,218,214),((wx4+0.5)*(largura/8),(wy4+0.5)*(altura/8)),30)
 
     pygame.draw.circle(tela, (125,148,93),((wx5+0.5)*(largura/8),(wy5+0.5)*(altura/8)),32)
@@ -165,6 +174,9 @@ while True:
     pygame.draw.circle(tela, (125,148,93),((wx18+0.5)*(largura/8),(wy18+0.5)*(altura/8)),32)
     pygame.draw.circle(tela, (220,218,214),((wx18+0.5)*(largura/8),(wy18+0.5)*(altura/8)),30)
 
+
+    Cordenadas_X_W = [wx1,wx2,wx3,wx4,wx5,wx6,wx7,wx8,wx11,wx12,wx13,wx14,wx15,wx16,wx17,wx18]
+    Cordenadas_Y_W = [wy1,wy2,wy3,wy4,wy5,wy6,wy7,wy8,wy11,wy12,wy13,wy14,wy15,wy16,wy17,wy18]
 #####################################Seleção das peças ############################################
     #Backup se tudo explodir
     # #W1
@@ -210,6 +222,13 @@ while True:
         wx17, wy17, Statew17, turno = locomocaoW(wx17, wy17, Statew17, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
         wx18, wy18, Statew18, turno = locomocaoW(wx18, wy18, Statew18, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
 
+    Cordenadas_X_W = [wx1,wx2,wx3,wx4,wx5,wx6,wx7,wx8,wx11,wx12,wx13,wx14,wx15,wx16,wx17,wx18]
+    Cordenadas_Y_W = [wy1,wy2,wy3,wy4,wy5,wy6,wy7,wy8,wy11,wy12,wy13,wy14,wy15,wy16,wy17,wy18]
+
+    Cordenadas_X_B, Cordenadas_Y_B,s,n = Come(Cordenadas_X_B,Cordenadas_Y_B,Cordenadas_X_W,Cordenadas_Y_W,turno)
+
+    bx1,bx2,bx3,bx4,bx5,bx6,bx7,bx8,bx11,bx12,bx13,bx14,bx15,bx16,bx17,bx18 = Cordenadas_X_B
+    by1, by2, by3, by4, by5, by6, by7, by8, by11, by12, by13, by14, by15, by16, by17, by18 = Cordenadas_Y_B
 
 
     if turno%2 == 1:                                #Se o turno for impar: as peças pretas jogam
@@ -241,6 +260,13 @@ while True:
         bx17, by17, Stateb17, turno, cont= locomocaoB(bx17, by17, Stateb17, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
         bx18, by18, Stateb18, turno, cont = locomocaoB(bx18, by18, Stateb18, mx, my, largura, altura, event, tela, turno,numero,poder,cont)
 
+        Cordenadas_X_B = [bx1, bx2, bx3, bx4, bx5, bx6, bx7, bx8, bx11, bx12, bx13, bx14, bx15, bx16, bx17, bx18]
+        Cordenadas_Y_B = [by1, by2, by3, by4, by5, by6, by7, by8, by11, by12, by13, by14, by15, by16, by17, by18]
+        
+        Cordenadas_X_W, Cordenadas_Y_W = Come(Cordenadas_X_B,Cordenadas_Y_B,Cordenadas_X_W,Cordenadas_Y_W,turno,)
+
+        wx1, wx2, wx3, wx4, wx5, wx6, wx7, wx8, wx11, wx12, wx13, wx14, wx15, wx16, wx17, wx18 = Cordenadas_X_W
+        wy1, wy2, wy3, wy4, wy5, wy6, wy7, wy8, wy11, wy12, wy13, wy14, wy15, wy16, wy17, wy18 = Cordenadas_Y_W
 
     #selection color(199, 198, 149)
     pygame.display.update() # faz o loop/atualização do game
