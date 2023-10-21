@@ -1,4 +1,5 @@
-# Wars of Horus
+![logo](https://github.com/time-horus/wars-of-horus/assets/147745796/4404119e-623e-4400-a140-1dc09213f065)
+
 IoT project from RAS - Unesp Bauru
 
 <p align="center">
