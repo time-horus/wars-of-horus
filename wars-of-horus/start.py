@@ -19,6 +19,8 @@ def iniciar_jogo():
 def sobre():
     tela_sobre = pygame.display.set_mode((640, 640))
     fundo_sobre = pygame.image.load("imagens/background.png")
+    pygame.display.set_caption("Wars of Horus - Sobre")
+    pygame.display.set_icon(pygame.image.load('imagens/tile.png'))
     botao_voltar_normal = pygame.transform.scale(pygame.image.load("imagens/botoes/EXIT.png"), (190, 52))
     botao_voltar_hover = pygame.transform.scale(pygame.image.load("imagens/botoes/EXIT2.png"), (190, 52))
     botao_voltar_rect = botao_voltar_normal.get_rect()
@@ -82,7 +84,8 @@ def main():
     pygame.mixer.music.play(-1)
 
     tela = pygame.display.set_mode((640, 640))
-    pygame.display.set_caption("Menu Inicial")
+    pygame.display.set_caption("Wars of Horus - Menu Inicial")
+    pygame.display.set_icon(pygame.image.load('imagens/tile.png'))
 
     tela.fill((0, 0, 0))
 
