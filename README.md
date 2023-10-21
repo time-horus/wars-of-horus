@@ -5,6 +5,8 @@
   </a>
 </p>
 
+<br/><br/>
+
 Wars of Horus é um jogo baseado em xadrêz, com temática de mitologia egípcia no estilo de jogos retro, em que se inclui um elemento de randomização de possibilidades de movimentação, além de adicionar várias propriedades a fim de diversão e surpresa.  
 O repositório contém o código escrito em Python que se utiliza da engine Pygame. Assim fornecendo uma gama de opções de implementações gráficas e funcionais para o jogo.  
 
