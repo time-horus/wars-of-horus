@@ -220,7 +220,6 @@ while True:
             else:                                               #caso contrario, sorteia um movimento normal
                 numero = rnd.randint(0,5)
                 aleat = 1
-                print(numero)
     ################################Funções de locomoção das peças brancas#######################################################################################
         wx1, wy1, Statew1, turno,  Cordenadas_B = locomocaoW(wx1,wy1,Statew1,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
         wx2, wy2, Statew2, turno,  Cordenadas_B = locomocaoW(wx2,wy2,Statew2,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
