@@ -1,7 +1,5 @@
 ![logo](https://github.com/time-horus/wars-of-horus/assets/147745796/4404119e-623e-4400-a140-1dc09213f065)
 
-IoT project from RAS - Unesp Bauru
-
 <p align="center">
   <a href="https://sites.google.com/unesp.br/rasunespbauru/home">
     <img src="https://user-images.githubusercontent.com/50799373/88114032-6396b280-cb89-11ea-9de9-656eb9bc2d31.png" alt="RAS logo" width="500" height="140">
