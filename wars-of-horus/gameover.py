@@ -1,21 +1,32 @@
 import pygame
 from start import tocar_som
+import subprocess
 
-def game_over(turns,fonte=None, cont=0):
+def iniciar_jogo():
+    tocar_som('Sounds/sand-spell.flac', volume=0.2)
+    subprocess.Popen(["python", "code_1.py"])
+    fechar()
+
+def game_over(turns, fonte=None, cont=0):
     tela_game_over = pygame.display.set_mode((640, 640))
     pygame.display.set_caption("Game Over")
     pygame.display.set_icon(pygame.image.load('imagens/tile.png'))
     fundo_game_over = pygame.image.load("imagens/background.png")
+    botao_resume_normal = pygame.transform.scale(pygame.image.load("imagens/botoes/Resume.png"), (190, 50))
+    botao_resume_hover = pygame.transform.scale(pygame.image.load("imagens/botoes/Resume2.png"), (190, 50))
     botao_voltar_normal = pygame.transform.scale(pygame.image.load("imagens/botoes/EXIT.png"), (190, 52))
     botao_voltar_hover = pygame.transform.scale(pygame.image.load("imagens/botoes/EXIT2.png"), (190, 52))
+    botao_resume_rect = botao_resume_normal.get_rect()
     botao_voltar_rect = botao_voltar_normal.get_rect()
+    botao_resume_rect.center = (320, 460)
     botao_voltar_rect.center = (320, 530)
+    botao_resume_hovered = False
     botao_voltar_hovered = False
 
     game_over_executando = True
 
     # Texto para a tela de Game Over
-    if turns%2 == 0:
+    if turns % 2 == 0:
         texto_game_over = "Isis is the true pharaoh. Destiny is on your side."
     else:
         texto_game_over = "Horus is the true pharaoh. Destiny is on your side."
@@ -44,7 +55,15 @@ def game_over(turns,fonte=None, cont=0):
                 if botao_voltar_rect.collidepoint(evento.pos):
                     tocar_som('Sounds/sand-spell.flac', volume=0.2)
                     game_over_executando = False
+                if botao_resume_rect.collidepoint(evento.pos):
+                    tocar_som('Sounds/sand-spell.flac', volume=0.2)
+                    iniciar_jogo()
+                    game_over_executando = False
             if evento.type == pygame.MOUSEMOTION:
+                if botao_resume_rect.collidepoint(evento.pos):
+                    botao_resume_hovered = True
+                else:
+                    botao_resume_hovered = False
                 if botao_voltar_rect.collidepoint(evento.pos):
                     botao_voltar_hovered = True
                 else:
@@ -75,5 +94,10 @@ def game_over(turns,fonte=None, cont=0):
             tela_game_over.blit(botao_voltar_hover, botao_voltar_rect)
         else:
             tela_game_over.blit(botao_voltar_normal, botao_voltar_rect)
+
+        if botao_resume_hovered:
+            tela_game_over.blit(botao_resume_hover, botao_resume_rect)
+        else:
+            tela_game_over.blit(botao_resume_normal, botao_resume_rect)
 
         pygame.display.flip()
