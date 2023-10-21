@@ -1,11 +1,13 @@
 import pygame #importa a biblioteca pygame
 import random as rnd #importa a biblioteca random
 import numpy as np
+import gameover
 
 from pygame.locals import *
 from sys import exit
 from LocomocaoW import locomocaoW
 from LocomocaoB import locomocaoB
+from gameover import game_over
 
 pygame.init()
 #largura e altura da tela
@@ -97,9 +99,9 @@ while True:
                 pygame.quit()
                 exit()
             if (bx4 == 84 or by4 == 84) or (wx14 == 84 or wy14 == 84):
+                game_over(turno, pygame.font.Font("fontes/OpenSansPXBold.ttf", 36), cont)
                 pygame.quit()
                 exit()
-
 
             
     mx, my = pygame.mouse.get_pos()
@@ -218,6 +220,7 @@ while True:
                 numero = rnd.randint(0,5)
                 aleat = 1
                 print(numero)
+
     ################################Funções de locomoção das peças brancas#######################################################################################
         wx1, wy1, Statew1, turno,  Cordenadas_B = locomocaoW(wx1,wy1,Statew1,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
         wx2, wy2, Statew2, turno,  Cordenadas_B = locomocaoW(wx2,wy2,Statew2,mx,my,largura,altura,event,tela, turno,numero,poder,cont,Cordenadas_B)
@@ -265,8 +268,8 @@ while True:
         bx8, by8, Stateb8, turno, cont, Cordenadas_W = locomocaoB(bx8, by8, Stateb8, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
         bx11, by11, Stateb11, turno, cont, Cordenadas_W = locomocaoB(bx11, by11, Stateb11, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
         bx12, by12, Stateb12, turno, cont, Cordenadas_W = locomocaoB(bx12, by12, Stateb12, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
-        bx13, by13, Stateb13, turno, cont, Cordenadas_W= locomocaoB(bx13, by13, Stateb13, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
-        bx14, by14, Stateb14, turno, cont, Cordenadas_W= locomocaoB(bx14, by14, Stateb14, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx13, by13, Stateb13, turno, cont, Cordenadas_W = locomocaoB(bx13, by13, Stateb13, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
+        bx14, by14, Stateb14, turno, cont, Cordenadas_W = locomocaoB(bx14, by14, Stateb14, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
         bx15, by15, Stateb15, turno, cont, Cordenadas_W = locomocaoB(bx15, by15, Stateb15, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
         bx16, by16, Stateb16, turno, cont, Cordenadas_W = locomocaoB(bx16, by16, Stateb16, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
         bx17, by17, Stateb17, turno, cont, Cordenadas_W = locomocaoB(bx17, by17, Stateb17, mx, my, largura, altura, event, tela, turno,numero,poder,cont,Cordenadas_W)
