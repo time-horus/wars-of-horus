@@ -14,9 +14,9 @@ O repositório contém o código escrito em Python que se utiliza da engine Pyga
 Esse projeto de código e soundtrack livres teve início em função de acompanhar o desenvolvimento do Time Hórus no processo seletivo da RAS de 2023.
 
 ## Instalação
-Devido ao uso do módulo do Pygame no projeto, é necessário instalar-lo dentre as bibliotecas existentes no computador. É possível fazer isso usando o seguinte comando:
+Devido ao uso do módulo do Pygame e Numpy no projeto, é necessário instalar-los dentre as bibliotecas existentes no computador. É possível fazer isso usando o seguinte comando:
 ```
-pip install -m pygame
+pip install pygame numpy
 ```
 Além disso, é necessário que você tenha o código fonte do projeto em seu computador. Pode-se usar git para isso, com o seguinte comando:
 ```
